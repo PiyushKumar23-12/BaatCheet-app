@@ -1,27 +1,33 @@
 import jwt from "jsonwebtoken"
 import User from "../models/user.model.js"
+import UnauthorizedError from "../errors/UnauthorizedError.js";
+import env from "../config/env.js";
+import logger from "../lib/logger.js";
 
 export const protectRoute=async(req,res,next)=>{
     try{
         const token=req.cookies.jwt;
         if(!token){
-            return res.status(401).json({message:"Unauthorized-No tokens Provided."});
+            throw new UnauthorizedError("Authentication required");
         }
-        const decoded=jwt.verify(token,process.env.JWT_SECRET)
+        const decoded=jwt.verify(token,env.JWT_SECRET)
         if(!decoded){
-            return res.status(401).json({message:"Unauthorized-Invalid token."});
+            throw new UnauthorizedError("Unauthorized-Invalid token.");
+            // return res.status(401).json({message:"Unauthorized-Invalid token."});
         }
         const user=await User.findById(decoded.userId).select("-password");
 
         if(!user){
-            return res.status(404).json({message:"User not found."});
+            throw new UnauthorizedError("Invalid authentication");
+            // return res.status(404).json({message:"User not found."});
         }
 
         req.user=user
         next()
     }
     catch(error){
-        console.log("Error in Profile Middleware:",error.message);
+
+        logger.error("Error in Profile Middleware:",error.message);
         return res.status(500).json({message:"Internal Server Error"});
     }
 }
