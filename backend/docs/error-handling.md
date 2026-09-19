@@ -1,6 +1,7 @@
 
-````markdown
 # BAATCHEET - Error Handling Design
+
+````markdown
 
 ## Overview
 
@@ -21,13 +22,10 @@ The main goals are:
 - Centralize error logging.
 - Improve maintainability and debugging.
 
----
-
 # Error Flow
 
 The normal request flow is:
 
-```text
 Client
   │
   ▼
@@ -56,7 +54,7 @@ HTTP Response
 
 When an error occurs:
 
-```text
+```
 Any Layer
    │
    ▼
