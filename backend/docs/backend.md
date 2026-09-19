@@ -21,7 +21,6 @@ Zod, and Swagger.
 - Swagger / OpenAPI
 - CORS
 
-
 # Architecture
 
 BAATCHEET follows a **Modular Monolith** architecture.
@@ -41,10 +40,7 @@ The main goals are:
 - Maintainable project structure
 - Clear dependency direction
 
----
-
 # Project Structure
-
 
 src/
 ├── config/
@@ -100,6 +96,7 @@ src/
 
 # High-Level Request Flow
 
+```
 Client
   │
   ▼
@@ -128,7 +125,6 @@ Service
 HTTP Response
 ```
 
----
 
 # Layer Responsibilities
 
