@@ -1,13 +1,12 @@
 
-````markdown
 # Phase 0 – Foundation & Architecture
+
+````markdown
 
 ## Goal
 
 Transform BAATCHEET from a college project into a structured backend with
 production-oriented architecture and engineering practices.
-
----
 
 ## Objectives
 
@@ -26,13 +25,10 @@ production-oriented architecture and engineering practices.
 - Establish a clean and maintainable project structure.
 - Perform a final architecture review.
 
----
-
 # Phase 0 Architecture
 
 The final request flow established during Phase 0 is:
 
-```text
 Client
   │
   ▼
@@ -63,7 +59,7 @@ HTTP Response
 
 Errors follow a centralized path:
 
-```text
+```
 Any Layer
    │
    ▼
