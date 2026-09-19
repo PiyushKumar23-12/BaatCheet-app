@@ -1,6 +1,6 @@
-````markdown
 ### `README.md`
 
+````markdown
 # BAATCHEET Backend
 
 Backend service for **BAATCHEET**, a real-time chat application built with
@@ -939,7 +939,3 @@ API Docs        → Swagger
 
 **Phase 0 — Foundation & Architecture: COMPLETE ✅**
 
-```
-
-This is the version I'd use as the **single source of truth for the backend architecture**.
-```
