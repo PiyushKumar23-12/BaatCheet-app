@@ -1,6 +1,6 @@
+````markdown
 ### `README.md`
 
-````markdown
 # BAATCHEET Backend
 
 Backend service for **BAATCHEET**, a real-time chat application built with
