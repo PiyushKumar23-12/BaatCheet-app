@@ -7,8 +7,6 @@ Backend service for **BAATCHEET**, a real-time chat application built with
 Node.js, Express, MongoDB, Socket.IO, JWT authentication, Cloudinary,
 Zod, and Swagger.
 
----
-
 # Tech Stack
 
 - Node.js
@@ -23,7 +21,6 @@ Zod, and Swagger.
 - Swagger / OpenAPI
 - CORS
 
----
 
 # Architecture
 
@@ -48,7 +45,7 @@ The main goals are:
 
 # Project Structure
 
-```text
+
 src/
 ├── config/
 │   ├── env.js
@@ -103,7 +100,6 @@ src/
 
 # High-Level Request Flow
 
-```text
 Client
   │
   ▼
