@@ -28,6 +28,7 @@ export const protectRoute=async(req,res,next)=>{
     catch(error){
 
         logger.error("Error in Profile Middleware:",error.message);
-        return res.status(500).json({message:"Internal Server Error"});
+        throw error;
+        // return res.status(500).json({message:"Internal Server Error"});
     }
 }

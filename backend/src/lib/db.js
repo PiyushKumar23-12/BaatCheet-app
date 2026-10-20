@@ -9,5 +9,6 @@ export const connectDb=async()=>{
     }
     catch(error){
         logger.error(error);
+        throw error;
     }
 };
