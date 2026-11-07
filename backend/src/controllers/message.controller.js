@@ -3,6 +3,7 @@ import {
     getUsers,
     getMessage
 } from "../services/message.service.js";
+import { validateImage } from "../utils/validateImage.js";
 
 export const getUsersForSideBar = async (req, res) => {
     const filteredUsers = await getUsers({

@@ -3,6 +3,7 @@ import { getReceiverSocketId } from "../lib/socket.js";
 import Message from "../models/message.model.js";
 import {io} from "../lib/socket.js"
 import User from "../models/user.model.js";
+import { validateImage } from "../utils/validateImage.js";
 
 
 export const getUsers=async({id})=>{
@@ -20,7 +21,11 @@ export const sendMessage=async({senderId,receiverId,text,image})=>{
     // try {
         let imageUrl;
         if(image){
-            const uploadResponse=await cloudinary.uploader.upload(image);
+            await validateImage(image);
+            const uploadResponse = await cloudinary.uploader.upload(image, {
+                resource_type: "image",
+                allowed_formats: ["jpg", "jpeg", "png", "webp"]
+            });
             imageUrl=uploadResponse.secure_url;
         }
         const newMessage=new Message({

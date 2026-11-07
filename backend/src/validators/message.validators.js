@@ -24,7 +24,7 @@ export const sendMessageSchema=z.object({
         text: z.string().optional(),
         image: z.string().optional()
     }).refine((data)=>
-    (data.text || data.image),
+    (data.text && data.text.trim().length > 0) || (data.image && data.image.length > 0),
     {
         message:"Message must contain text or image"
     }

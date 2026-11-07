@@ -4,7 +4,7 @@ import cloudinary from "../lib/cloudinary.js";
 
 import ConflictError from "../errors/ConflictError.js";
 import UnauthorizedError from "../errors/UnauthorizedError.js";
-
+import { validateImage } from "../utils/validateImage.js";
 
 export const SignUp = async ({
     fullName,
@@ -58,9 +58,11 @@ export const UpdateProfile = async ({
     profilePic,
     userId
 }) => {
-
-    const uploadResponse =
-        await cloudinary.uploader.upload(profilePic);
+    await validateImage(profilePic);
+    const uploadResponse = await cloudinary.uploader.upload(image, {
+        resource_type: "image",
+        allowed_formats: ["jpg", "jpeg", "png", "webp"]
+    });
 
     const updatedUser =
         await User.findByIdAndUpdate(

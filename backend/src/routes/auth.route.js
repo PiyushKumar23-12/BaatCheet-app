@@ -3,6 +3,7 @@ import { checkAuth, login, logout, signup, updateProfile } from "../controllers/
 import { protectRoute } from "../middleware/auth.middleware.js";
 import { asyncHandler } from "../middleware/asyncHandler.js";
 import { validate } from "../middleware/validation.middleware.js";
+import { authLimiter } from "../middleware/rateLimit.middleware.js";
 
 import {
     signupSchema,
@@ -52,6 +53,7 @@ const router = express.Router();
  */
 router.post(
     "/signup",
+    authLimiter,
     validate(signupSchema),
     asyncHandler(signup)
 );
@@ -92,6 +94,7 @@ router.post(
  */
 router.post(
     "/login",
+    authLimiter,
     validate(loginSchema),
     asyncHandler(login)
 );

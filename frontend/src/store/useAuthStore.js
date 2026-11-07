@@ -67,7 +67,7 @@ export const useAuthStore=create((set,get)=>({
             
             toast.success("Logged out successfully.");
             get().disConnectSocket();
-        } catch (error) {
+        } catch{
             toast.error("Something went wrong.");   
         }
     },
@@ -77,7 +77,7 @@ export const useAuthStore=create((set,get)=>({
             const res=await axiosInstance.put("/auth/update-profile",data)
             set({authUser:res.data});
             toast.success("Profile updated successfully");
-        } catch (error) {
+        } catch{
             toast.error("Something went wrong.");  
         }
         finally{

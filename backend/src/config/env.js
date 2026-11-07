@@ -16,6 +16,10 @@ for (const key of requiredEnv) {
     }
 }
 
+if (process.env.JWT_SECRET && process.env.JWT_SECRET.length < 32) {
+    throw new Error("JWT_SECRET must be at least 32 characters long");
+}
+
 const env = {
     NODE_ENV: process.env.NODE_ENV || "development",
     PORT: process.env.PORT || 5001,
