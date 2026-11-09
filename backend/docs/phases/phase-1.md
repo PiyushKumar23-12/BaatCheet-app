@@ -62,6 +62,7 @@ Phase 1 focuses on making BAATCHEET production-ready by implementing containeriz
 
 | Component | Status |
 |---|---|
+
 | Docker | Completed |
 | Backend Testing | Completed |
 | Security | Completed |
