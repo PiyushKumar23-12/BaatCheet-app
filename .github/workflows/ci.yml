@@ -24,7 +24,14 @@ jobs:
 
       - name: Run backend tests
         run: npm test -- --run
-        working-directory: backend
+        working-directory: backend  
+        env:
+          NODE_ENV: test
+          JWT_SECRET: test-secret-key-at-least-32-characters-long
+          MONGODB_URI: mongodb://127.0.0.1:27017/baatcheet_test
+          CLOUDINARY_CLOUD_NAME: test-cloud
+          CLOUDINARY_API_KEY: test-api-key
+          CLOUDINARY_API_SECRET: test-api-secret
 
       - name: Install frontend dependencies
         run: npm ci
