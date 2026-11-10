@@ -64,8 +64,8 @@ jobs:
       - name: Tag Docker images
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         run: |
-          docker tag baatcheet-backend:latest piyush5624/baatcheet-backend:${IMAGE_VERSION}
-          docker tag baatcheet-frontend:latest piyush5624/baatcheet-frontend:${IMAGE_VERSION}
+          docker tag baatcheet-app-backend:latest piyush5624/baatcheet-backend:${IMAGE_VERSION}
+          docker tag baatcheet-app-frontend:latest piyush5624/baatcheet-frontend:${IMAGE_VERSION}
 
       - name: Push Docker images
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
