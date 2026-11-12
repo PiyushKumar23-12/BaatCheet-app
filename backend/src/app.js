@@ -29,6 +29,12 @@ app.use(requestLogger);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use("/api/auth", authRoutes);
 app.use("/api/message", messageRoutes);
+app.get("/api/health", (req, res) => {
+    res.status(200).json({
+        status: "OK",
+        message: "BAATCHEET backend is healthy"
+    });
+});
 
 app.use(errorHandler);
 
