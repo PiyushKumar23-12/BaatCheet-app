@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      IMAGE_VERSION: ver-0.3
+      IMAGE_VERSION: ver-0.4
 
     steps:
       - name: Checkout repository
@@ -79,6 +79,7 @@ jobs:
         env:
           RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
           RENDER_SERVICE_ID: ${{ secrets.RENDER_SERVICE_ID }}
+
         run: |
           curl --fail --silent --show-error \
             --request POST \
@@ -87,3 +88,20 @@ jobs:
             --header "Accept: application/json" \
             --header "Content-Type: application/json" \
             --data "{\"imageUrl\":\"docker.io/piyush5624/baatcheet-backend:${IMAGE_VERSION}\"}"
+
+
+      - name: Deploy Frontend to Render
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        env:
+          RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
+          RENDER_FRONTEND_SERVICE_ID: ${{ secrets.RENDER_FRONTEND_SERVICE_ID }}
+
+        run: |
+          curl --fail --silent --show-error \
+            --request POST \
+            --url "https://api.render.com/v1/services/${RENDER_FRONTEND_SERVICE_ID}/deploys" \
+            --header "Authorization: Bearer ${RENDER_API_KEY}" \
+            --header "Accept: application/json" \
+            --header "Content-Type: application/json" \
+            --data "{\"imageUrl\":\"docker.io/piyush5624/baatcheet-frontend:${IMAGE_VERSION}\"}"
+          
