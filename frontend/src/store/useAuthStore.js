@@ -38,8 +38,10 @@ export const useAuthStore=create((set,get)=>({
             set({authUser:res.data});
             toast.success("Account created successfully");
             get().connectSocket();
+            return true;
         } catch (error) {
             toast.error(error);
+            return false;
         }
         finally{
             set({ isSigningUp:false});

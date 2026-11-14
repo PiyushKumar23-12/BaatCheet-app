@@ -6,6 +6,8 @@ import toast from 'react-hot-toast';
 const MessageInput = () => {
     const [text,setText]=useState("");
     const [imagePreview,setImagePreview]=useState(null);
+    const [isSending, setIsSending] = useState(false);
+    const isSendingRef = useRef(false);
     const fileInputRef=useRef(null);
 
     const {sendMessage}=useChatStore();
@@ -32,9 +34,12 @@ const MessageInput = () => {
 
     const handleSendMessage=async(e)=>{
       e.preventDefault();
+      if (isSendingRef.current) return;
       if(!text.trim() && !imagePreview){
         return;
       }
+      isSendingRef.current = true;
+      setIsSending(true);
       try{
         await sendMessage({
           text:text.trim(),
@@ -48,6 +53,10 @@ const MessageInput = () => {
       }
       catch{
         console.log("Failed to send message.");
+      }
+      finally {
+        isSendingRef.current = false;
+        setIsSending(false);
       }
     };
 
@@ -102,7 +111,7 @@ const MessageInput = () => {
         <button
           type="submit"
           className="btn btn-sm btn-circle"
-          disabled={!text.trim() && !imagePreview}
+           disabled={isSending || (!text.trim() && !imagePreview)}
         >
           <Send size={22} className=' cursor-pointer' />
         </button>

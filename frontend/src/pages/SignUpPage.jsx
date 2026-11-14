@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { useAuthStore } from "../store/useAuthStore";
 import { Eye, EyeOff, Loader2, Lock, Mail, MessageSquare, User } from "lucide-react";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
 import AuthImagePattern from "../components/AuthImagePattern";
 import toast from "react-hot-toast";
 
+
 const SignUpPage = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -31,7 +32,13 @@ const SignUpPage = () => {
 
     const success = validateForm();
 
-    if (success === true)signup(formData);
+    if (success === true) {
+        const isSuccess = await signup(formData);
+
+        if (isSuccess) {
+            navigate("/");
+        }
+    }
   };
 
   return (

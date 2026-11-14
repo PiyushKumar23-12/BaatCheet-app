@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      IMAGE_VERSION: ver-0.4
+      IMAGE_VERSION: ver-0.5
 
     steps:
       - name: Checkout repository
