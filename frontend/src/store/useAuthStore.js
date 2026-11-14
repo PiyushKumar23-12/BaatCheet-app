@@ -40,7 +40,11 @@ export const useAuthStore=create((set,get)=>({
             get().connectSocket();
             return true;
         } catch (error) {
-            toast.error(error);
+            console.error("Signup failed:", error.response?.data || error);
+
+            toast.error(
+                error.response?.data?.message || "Signup failed"
+            );
             return false;
         }
         finally{
